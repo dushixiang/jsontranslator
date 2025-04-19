@@ -20,7 +20,7 @@ const (
 type LargeLanguageModelConfig struct {
 	Provider Provider `json:"provider"`
 	BaseURL  string   `json:"base_url"`
-	ApiKey   string   `json:"api_key"`
+	ApiKey   string   `json:"-"`
 	Model    string   `json:"model"`
 }
 

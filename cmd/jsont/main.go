@@ -10,9 +10,11 @@ import (
 )
 
 var configPath string
+var apiKey string
 
 func init() {
 	flag.StringVar(&configPath, "c", "config.json", "config file")
+	flag.StringVar(&apiKey, "k", "", "api key")
 	flag.Parse()
 
 	log.SetFlags(log.Lshortfile)
@@ -23,6 +25,9 @@ func main() {
 	config, err := jsontranslator.ReadConfig(configPath)
 	if err != nil {
 		log.Fatal(err)
+	}
+	if apiKey != "" {
+		config.LLM.ApiKey = apiKey
 	}
 
 	dir := filepath.Dir(config.Input)
